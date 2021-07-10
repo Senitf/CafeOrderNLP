@@ -35,7 +35,35 @@ Question과 intent에 따라 Answer을 만들어 내는 Gpt-2 모델입니다. <
 - https://medium.com/@eyfydsyd97/bert%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-classification-by-pytorch-2a6d4adaf162 <br>
 ## kogpt2를 활용한 챗봇 링크
 - https://github.com/haven-jeon/KoGPT2-chatbot <br>
-```
-HelloWorld
-```
+
 ## 사용법
+```
+!pip install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+!pip install mxnet gluonnlp sentencepiece pandas transformers pytorch lightning
+!pip install git+https://github.com/SKT-AI/KoGpt#egg=kogpt2
+!git clone --recurse-submodules https://github.com/haven-jeon/KoGPT2-chatbot.git
+!pip install tensorboardX
+%cd KoGPT2-chatbot
+!CUDA_VISIBLE_DEVICES=0 python train_torch.py --train --gpus 1 --max_epochs 30
+%load ext tensorboard
+%tensorboard --logdir=runs
+!CUDA_VISIBLE_DEVICES=0 python train_torch.py --gpus 1 --chat
+```
+## 학습 과정
+
+Question이 input으로 들어가면 intent가 output으로 나오는 Classifier의 학습 방법은 pre trained 된 bert 모델을 사용하여 fine tuning을 하였습니다. 문장에 masking을 하여 bert의 특성인 양방향 encoding을 진행하도록 하였습니다. GPU를 사용하기 위해 병렬로 데이터를 넣어 주었으며 또한 문장의 맨 앞에 [CLS] 토큰을 삽입하여 classify를 하도록 하였습니다. classify를 진 행하고 결과 값에 손실함수는 classify 문제에서 많이 사용되는 cross entropy 를 사용하였습니다. Optimizer는 pytorch 에서 제공하는 AdamW를 사용하였습니다.
+Question과 intent가 input으로 들어가면 Answer이 output으로 나오는 Generator(GPT-2)는 pytorch lightning module을 사용하였습니다. 마찬가지로 병렬로 데이터를 처리할 수 있도록 하 였고, bert와 비슷하게 mask를 씌웠습니다. Bert와 다른 점은 Bert는 양방향인데에 반해 GPT-2 는 left to right로 다음 단어가 무엇이 나올지 예측하는 방식 이었습니다. GPT-2 모델도 pre trained된 모델이지만 한글로만 pre training을 시킨 모델 이어서 한글을 사용할 때에 더욱 효율 을 높이도록 하였습니다. 모델을 사용하여 예측한 다음 단어와 원래 단어와의 cross entropy 한 값을 loss로 하였습니다. Optimizer는 pytorch에서 제공하는 AdamW를 사용하였습니다.
+
+## 결과 분석
+
+Classifier의 성능은 test set에서 50퍼센트로 매우 낮게 나왔습니다. Epoch을 여러가지로 테스트 해봤지만 마찬가지로 50퍼센트 내외 였습니다. 데이터 부족 문제 인 것으로 추정 됩니다. 아래 의 그림은 classifier를 학습하면서 생성한 loss log 입니다.
+아래의 그림은 Generator의 loss log 입니다
+아래는 대화 예시입니다. 완벽하게 잘 되지는 않지만 그래도 어느정도 대화는 오가는 모습을 보 입니다. 출력 형식이 다듬어지지 않았습니다. ‘Customer > 점원 >’이 두 번 나오는데 두번째는 무시하면 됩니다.
+
+## 미흡했던 것
+- 대화의 흐름(문맥) 인식
+단일 Input 에 대한 단일 답변은 어느정도 매끄러운 경우도 있었지만 대화를 지속했을 때, 그 흐름을 인식하는 것에는 어려움이 있었습니다. 해당 부분에 대해서는 `Multi Level Classification` 이나, 흐름에 대한 정보를 인식을 위한 `모델 자체에 대한 수정`이 필요하지 않을까 라고 생각했습니다.
+- 특정 정보 인식 (음료나 메뉴의 가격 등)
+상황에 맞는 답변만 고려하다보니 특정 메뉴의 가격을 묻거나, 성분을 묻는 경우에 그 메뉴와 전혀 상관없는 메뉴의 성분이나 가격을 답하고는 했습니다. 해당 부분에 대해서는 특정 가격인 성분에 관한 Train Data 를 `Text Augmentation` 등을 통해 강조하거나, 애초에 이 부분은 답변이 정해져있으므로, 문장을 따로 생성하지 않고 `준비되어있는 문장을 대신 출력`해도 좋을 것 같습니다.
+
+!git clone --recurse-submodules https://github.com/haven-jeon/KoGPT2-chatbot
