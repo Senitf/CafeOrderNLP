@@ -24,6 +24,10 @@
 ##아키텍쳐
 학습 과정에서의 흐름도 입니다 <br>
 
+![정보검색_최종발표 001](https://user-images.githubusercontent.com/55660691/125150790-711fc080-e17d-11eb-9e97-c6403efcb3d1.jpeg)
+![정보검색_최종발표 002](https://user-images.githubusercontent.com/55660691/125150795-767d0b00-e17d-11eb-9560-c62d3b019e33.jpeg)
+![정보검색_최종발표 003](https://user-images.githubusercontent.com/55660691/125150797-77ae3800-e17d-11eb-8899-658bfe55807f.jpeg)
+
 Intent를 분류한 Bert 분류모델 입니다. <br>
 
 Question과 intent에 따라 Answer을 만들어 내는 Gpt-2 모델입니다. <br>
