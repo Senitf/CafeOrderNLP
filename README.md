@@ -2,9 +2,9 @@
 GPT2 와 Bert 를 이용한 비대면 카페 주문 챗봇 만들기
 
 ## 목적
-nlp분야에서 가장 강력한 모델이라고 불리우는 bert와 gpt2를 이해하고, 다뤄 보기를 이번 프로젝트의 목표로 삼았습니다.<br>
+자연어 처리 분야에서 가장 강력한 모델이라고 불리우는 bert와 gpt2를 이해하고, 다뤄보는 것을 이번 프로젝트의 목표로 삼았습니다.<br>
 ## 입력
-학습할 때에는 Question과 Answer, intent가 labeling된 데이터를 입력으로 합니다. 학습이 완료된 모델을 사용할 때에는 Question을 넣으면 생성된 Answer가 출력으로 나옵니다. <br>
+학습할 때에는 Question과 Answer, Intent가 Labeling된 데이터를 입력으로 합니다. 학습이 완료된 모델을 사용할 때에는 Question을 넣으면 생성된 Answer가 출력으로 나옵니다. <br>
 ## 관련 연구
 인터넷을 찾아보다 pingpong팀에서 gpt2로 구현한 챗봇을 참고 많이 했습니다. 또한 SKT-AI에서 만든 kogpt2를 사용한 챗봇 또한 참고를 많이 했습니다. 두 프로젝트 모두 카페 대화 처럼 closed domain이 아니라 심리상담, 공감과 같이 domain이 딱히 정해지지 않았습니다. Text generation에 뛰어난 효과를 보이는 gpt-2를 활용하여 작업 하였습니다. 아래는 관련 링크입니다. <br>
 
