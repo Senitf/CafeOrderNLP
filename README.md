@@ -81,9 +81,13 @@ Optimizer는 pytorch에서 제공하는 AdamW를 사용하였습니다. <br>
 
 ## 결과 분석
 
-Classifier의 성능은 test set에서 50퍼센트로 매우 낮게 나왔습니다. Epoch을 여러가지로 테스트 해봤지만 마찬가지로 50퍼센트 내외 였습니다. 데이터 부족 문제 인 것으로 추정 됩니다. 아래 의 그림은 classifier를 학습하면서 생성한 loss log 입니다.
-아래의 그림은 Generator의 loss log 입니다
+Classifier의 성능은 test set에서 50퍼센트로 매우 낮게 나왔습니다. Epoch을 여러가지로 테스트 해봤지만 마찬가지로 50퍼센트 내외 였습니다. 데이터 부족 문제 인 것으로 추정 됩니다. 아래 의 그림은 classifier를 학습하면서 생성한 loss log 와 Generator의 loss log 입니다.
+
+![정보검색_최종발표 010](https://user-images.githubusercontent.com/55660691/125150904-1f2b6a80-e17e-11eb-8670-fe2ab7b5ea3e.jpeg)
+
 아래는 대화 예시입니다. 완벽하게 잘 되지는 않지만 그래도 어느정도 대화는 오가는 모습을 보 입니다. 출력 형식이 다듬어지지 않았습니다. ‘Customer > 점원 >’이 두 번 나오는데 두번째는 무시하면 됩니다.
+
+![정보검색_최종발표 011](https://user-images.githubusercontent.com/55660691/125150907-2488b500-e17e-11eb-8da2-56867b5dcf71.jpeg)
 
 ## 미흡했던 것
 - 대화의 흐름(문맥) 인식
