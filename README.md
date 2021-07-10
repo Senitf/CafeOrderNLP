@@ -70,7 +70,8 @@ train_torch.py에서 CharDataset과 KoGPT2Chat Class 를 제외한 나머지 부
 Question이 input으로 들어가면 intent가 output으로 나오는 Classifier의 학습 방법은 pre trained 된 bert 모델을 사용하여 fine tuning을 하였습니다. <br>
 문장에 masking을 하여 bert의 특성인 양방향 encoding을 진행하도록 하였습니다. <br>
 GPU를 사용하기 위해 병렬로 데이터를 넣어 주었으며 또한 문장의 맨 앞에 [CLS] 토큰을 삽입하여 classify를 하도록 하였습니다. <br>
-classify를 진 행하고 결과 값에 손실함수는 classify 문제에서 많이 사용되는 cross entropy 를 사용하였습니다. Optimizer는 pytorch 에서 제공하는 AdamW를 사용하였습니다.
+classify를 진 행하고 결과 값에 손실함수는 classify 문제에서 많이 사용되는 cross entropy 를 사용하였습니다. <br>
+Optimizer는 pytorch 에서 제공하는 AdamW를 사용하였습니다.
 Question과 intent가 input으로 들어가면 Answer이 output으로 나오는 Generator(GPT-2)는 pytorch lightning module을 사용하였습니다. <br>
 마찬가지로 병렬로 데이터를 처리할 수 있도록 하 였고, bert와 비슷하게 mask를 씌웠습니다. <br>
 Bert와 다른 점은 Bert는 양방향인데에 반해 GPT-2 는 left to right로 다음 단어가 무엇이 나올지 예측하는 방식 이었습니다. <br>
