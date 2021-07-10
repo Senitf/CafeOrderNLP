@@ -1,8 +1,8 @@
 # CafeOrderNLP
-GPT2 와 Bert 를 이용한 비대면 카페 주문 챗봇 만들기
+`GPT2` 와 `Bert` 를 이용한 비대면 카페 주문 챗봇 만들기
 
 ## 목적
-자연어 처리 분야에서 가장 강력한 모델이라고 불리우는 ₩bert₩와 gpt2를 이해하고, 다뤄보는 것을 이번 프로젝트의 목표로 삼았습니다.<br>
+자연어 처리 분야에서 가장 강력한 모델이라고 불리우는`Bert`와 `Gpt2`를 이해하고, 다뤄보는 것을 이번 프로젝트의 목표로 삼았습니다.<br>
 
 ## 입력
 학습할 때에는 Question과 Answer, Intent가 Labeling된 데이터를 입력으로 합니다. 학습이 완료된 모델을 사용할 때에는 Question을 넣으면 생성된 Answer가 출력으로 나옵니다. <br>
@@ -12,7 +12,7 @@ GPT2 와 Bert 를 이용한 비대면 카페 주문 챗봇 만들기
 
 - https://blog.pingpong.us/generation-model/ <br>
 - https://github.com/haven-jeon/KoGPT2-chatbot <br>
-- 
+
 ## 데이터
 출처는 https://aihub.or.kr/aidata/85 에서 자료를 요청하여 받았습니다. 데이터에는 고객 (Question), 점원(Answer)의 대화가 있습니다. 또한 의도 또한 같이 labeling 되어 있습니다. 분류 모델에서는 training/validation/test 비율을 0.9/0/0.1로 하였고, 생성 모델에서는 0.7/0.2/0.1로 하 였습니다. 데이터 샘플은 아래와 같습니다. <br>
 
