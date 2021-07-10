@@ -32,6 +32,6 @@ Question과 intent에 따라 Answer을 만들어 내는 Gpt-2 모델입니다. <
 위의 데이터를 학습할 수 있도록 전처리를 하였습니다. 그리고 git clone을 사용하여 오픈소스로 된 코드 위에 bert를 사용한 classifier를 구현을 하였습니다. 기존의 코드에서 학습할 때에는 intent를 구분 하지만 채팅할 때에 intent를 구분하지 않는다는 문제점을 발견하여 intent classifier를 구현하였습니다. train_torch.py에서 CharDataset과 KoGPT2Chat Class 를 제외한 나머지 부분은 아래의 링크를 참조하여 구현하였습니다. 또한 기존의 코드에는 KoGPT2Chat class에서 validation, test를 하지 않았지만 저희는 추가적으로 training_step과 training_dataloader를 변형하여validation_step과 validation_dataloader, test_step과 test_dataloader 을 구현하였으며, loss graph를 그려 봤습니다. <br>
 
 ## Bert-classifier 참조 링크
-- https://medium.com/@eyfydsyd97/bert%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C- classification-by-pytorch-2a6d4adaf162 <br>
+- https://medium.com/@eyfydsyd97/bert%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-classification-by-pytorch-2a6d4adaf162 <br>
 ## kogpt2를 활용한 챗봇 링크
 - https://github.com/haven-jeon/KoGPT2-chatbot <br>
